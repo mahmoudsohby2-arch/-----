@@ -5,38 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MA Store | Premium</title>
     <style>
-        body { 
-            margin: 0; 
-            padding: 0;
-            /* وضع صورة الصخر كخلفية */
-            background-image: url('1000004508.png'); 
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+        
+        /* الخلفية: الصخور ثابتة وتملا الشاشة */
+        .background {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('1000004596.png');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            overflow: hidden; 
-        }
-        
-        .shoe-img { 
-            width: 80%; 
-            max-width: 500px; 
-            height: auto;
-            /* حركة "الطيران" للكوتشي فقط */
-            animation: float 3s ease-in-out infinite; 
-            /* إضافة ظل خفيف تحت الكوتشي ليعطي عمق */
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+            z-index: 1;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
+        /* الكوتشي: بيلف 360 درجة في النص */
+        .shoe {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 500px;
+            z-index: 2;
+            animation: rotateShoe 10s linear infinite;
+        }
+
+        @keyframes rotateShoe {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <img class="shoe-img" src="1000004493.png" alt="MA Shoe">
+    <div class="background"></div>
+    <img class="shoe" src="1000004500.png" alt="MA Sneaker">
 </body>
 </html>
